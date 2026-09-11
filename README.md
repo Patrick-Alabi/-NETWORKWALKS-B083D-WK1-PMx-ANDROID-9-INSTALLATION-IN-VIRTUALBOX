@@ -1,7 +1,7 @@
 # Week 1 Extra Project — Setting Up Android-x86 in VirtualBox (Networked with Kali Linux)
 
-**Program:** TS Academy Cybersecurity Internship — Week 1
-**Author:** Dasilvercass
+**Program:** NETWORKWALKS CYBERSECURITY INTERNSHIP — Week 1
+**Author:** Patrick Alabi
 
 ## Project Goal
 
@@ -29,16 +29,51 @@ This extends the multi-OS home-lab environment (alongside the Windows 10 build f
 ## What Was Done
 
 1. **Downloaded the Android-x86 9.0 ISO** from the official Android-x86 project page / SourceForge release folder (64-bit build, avoiding third-party mirrors).
-2. **Created a new VM in VirtualBox** — named `Android9-Lab`, OS type Linux / Other Linux (64-bit), 2048 MB RAM, 2 CPUs, 10 GB VDI virtual disk.
-3. **Attached the ISO** under Settings > Storage and configured Display (64 MB video memory, VBoxVGA graphics controller) for compatibility with the Android-x86 installer.
-4. **Installed Android-x86 to the virtual hard disk** — partitioned the disk with `cfdisk` (MBR, single bootable primary partition), formatted as ext4, installed the GRUB bootloader, and made the system partition writable.
-5. **Removed the installation ISO** from the virtual optical drive after the post-install reboot to boot directly into Android.
-6. **Configured the network adapter** to NAT Network, matching the same NAT Network used by the Kali VM.
-7. **Set a static IP inside Android** (`10.0.0.9/24`, gateway `10.0.0.1`, DNS `8.8.8.8`) via Wi-Fi (VirtWifi) → Advanced options → Static IP settings.
-8. **Validated connectivity** in both directions:
+
+![](s1-download-android-9.png)
+
+3. **Created a new VM in VirtualBox** — named `Android9-Lab`, OS type Linux / Other Linux (64-bit), 2048 MB RAM, 2 CPUs, 10 GB VDI virtual disk.
+
+![](s2-creating-vm.png)
+
+![](s3-creating-vm.png)
+
+![](s4-creating-vm.png)
+
+![](s5-creating-vm.png)
+
+![](s6-creating-vm.png)
+
+5. **Attached the ISO** under Settings > Storage and configured Display (64 MB video memory, VBoxVGA graphics controller) for compatibility with the Android-x86 installer.
+
+![](s7-attach-iso.png)
+
+![](s8-attach-iso.png)
+
+7. **Installed Android-x86 to the virtual hard disk** — partitioned the disk with `cfdisk` (MBR, single bootable primary partition), formatted as ext4, installed the GRUB bootloader, and made the system partition writable.
+
+![](s9-install-android.png)
+
+9. **Removed the installation ISO** from the virtual optical drive after the post-install reboot to boot directly into Android.
+
+![](s10-remove-iso.png)
+
+11. **Configured the network adapter** to NAT Network, matching the same NAT Network used by the Kali VM.
+
+![](s11-nat-network.png)
+
+13. **Set a static IP inside Android** (`10.0.0.9/24`, gateway `10.0.0.1`, DNS `8.8.8.8`) via Wi-Fi (VirtWifi) → Advanced options → Static IP settings.
+
+![](s12-static-ip-android.png)
+
+15. **Validated connectivity** in both directions:
    - Android → Kali: `ping 10.0.0.2`
    - Android → Internet: `ping 8.8.8.8`
    - Kali → Android: `ping 10.0.0.9`
+
+![](s13-android-kali.png)
+
+![](s14-kali-android.png)
 
 All three pings succeeded, confirming the Android-x86 VM and Kali Linux VM can reach each other and the internet over the shared NAT Network.
 
